@@ -15,5 +15,6 @@ public class ProgramaSonda {
 
         String[] comandosSegundaSonda = scanner.nextLine().split("");
 
+
     }
 }
