@@ -15,19 +15,16 @@ public class ProgramaSonda {
 
         String[] comandosSegundaSonda = scanner.nextLine().split("");
 
-        Sonda primeiraSonda = Sonda.createNewSonda(entradaPrimeiraSonda[0], entradaPrimeiraSonda[1], entradaPrimeiraSonda[2]);
+        Sonda primeiraSonda = Sonda.criarNovaSonda(entradaPrimeiraSonda[0],
+                entradaPrimeiraSonda[1], entradaPrimeiraSonda[2], comandosPrimeiraSonda) ;
 
-        for (int posicaoComando = 0; posicaoComando < comandosPrimeiraSonda.length; posicaoComando++) {
-            primeiraSonda.executaComando(comandosPrimeiraSonda[posicaoComando]);
-        }
-
-        Sonda segundaSonda = Sonda.createNewSonda(entradaSegundaSonda[0], entradaSegundaSonda[1], entradaSegundaSonda[2]);
-
-        for (int posicaoComando = 0; posicaoComando < comandosSegundaSonda.length; posicaoComando++) {
-            segundaSonda.executaComando(comandosSegundaSonda[posicaoComando]);
-        }
-
+        primeiraSonda.executarComandos();
         System.out.println(primeiraSonda.imprimirCoordenadas());
+
+        Sonda segundaSonda = Sonda.criarNovaSonda(entradaSegundaSonda[0],
+                entradaSegundaSonda[1], entradaSegundaSonda[2], comandosSegundaSonda);
+
+        segundaSonda.executarComandos();
         System.out.println(segundaSonda.imprimirCoordenadas());
 
     }

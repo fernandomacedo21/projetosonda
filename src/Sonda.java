@@ -6,18 +6,21 @@ public class Sonda {
 
     private DirecaoEnum direcao;
 
-    private Sonda(int coordenadaX, int coordenadaY, DirecaoEnum direcao) {
+    private String[] comandos;
+
+    private Sonda(int coordenadaX, int coordenadaY, DirecaoEnum direcao, String[] comandos) {
         this.coordenadaX = coordenadaX;
         this.coordenadaY = coordenadaY;
         this.direcao = direcao;
+        this.comandos = comandos;
     }
 
-    public static Sonda createNewSonda(String coordenadaX, String coordenadaY, String direcao){
+    public static Sonda criarNovaSonda(String coordenadaX, String coordenadaY, String direcao, String[] comandos ){
         return new Sonda(Integer.valueOf(coordenadaX),
-                Integer.valueOf(coordenadaY),DirecaoEnum.valueOf(direcao));
+                Integer.valueOf(coordenadaY),DirecaoEnum.valueOf(direcao), comandos);
     }
 
-    public void executaComando(String comando) {
+    private void executaComando(String comando) {
         if (comando.equals(ComandosEnum.L.toString())){
             this.direcao = direcao.getNovaDirecaoEsquerda();
         }else if(comando.equals(ComandosEnum.R.toString())){
@@ -42,6 +45,12 @@ public class Sonda {
     }
     public String imprimirCoordenadas() {
         return coordenadaX+" "+coordenadaY+" "+direcao;
+    }
+
+    public void executarComandos() {
+        for (int posicaoComando = 0; posicaoComando < this.comandos.length; posicaoComando++) {
+            executaComando(this.comandos[posicaoComando]);
+        }
     }
 }
 
